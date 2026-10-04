@@ -180,34 +180,46 @@ public class MovementHandler {
         }
     }
 
+    private static final net.minecraft.resources.ResourceLocation UNICODE_FONT = new net.minecraft.resources.ResourceLocation("minecraft", "uniform");
+
     public static void sendStatusMessage() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null) {
             return;
         }
 
-        Component separator = Component.literal("  »  ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY);
+        Component separator = Component.literal(" | ")
+                .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.DARK_GRAY).withFont(UNICODE_FONT));
 
         Component speedComponent = Component.empty()
-                .append(Component.translatable("foxhop.actionbar.label.speed").withStyle(net.minecraft.ChatFormatting.GRAY))
-                .append(Component.literal(": ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
-                .append(Component.literal(String.format(java.util.Locale.ROOT, "%.1fx", HopMode.getSpeedMultiplier())).withStyle(net.minecraft.ChatFormatting.GOLD, net.minecraft.ChatFormatting.BOLD));
+                .append(Component.translatable("foxhop.actionbar.label.speed")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.GRAY).withFont(UNICODE_FONT)))
+                .append(Component.literal(": ")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.DARK_GRAY).withFont(UNICODE_FONT)))
+                .append(Component.literal(String.format(java.util.Locale.ROOT, "%.1fx", HopMode.getSpeedMultiplier()))
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.GOLD).withFont(UNICODE_FONT)));
 
         boolean autoBhopOn = HopMode.isAutoBhop();
         Component autoBhopComponent = Component.empty()
-                .append(Component.translatable("foxhop.actionbar.label.autobhop").withStyle(net.minecraft.ChatFormatting.GRAY))
-                .append(Component.literal(": ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
+                .append(Component.translatable("foxhop.actionbar.label.autobhop")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.GRAY).withFont(UNICODE_FONT)))
+                .append(Component.literal(": ")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.DARK_GRAY).withFont(UNICODE_FONT)))
                 .append(Component.translatable(autoBhopOn ? "foxhop.status.on" : "foxhop.status.off")
-                        .withStyle(autoBhopOn ? net.minecraft.ChatFormatting.GREEN : net.minecraft.ChatFormatting.RED, net.minecraft.ChatFormatting.BOLD));
+                        .withStyle(style -> style.withColor(autoBhopOn ? net.minecraft.ChatFormatting.GREEN : net.minecraft.ChatFormatting.RED).withFont(UNICODE_FONT)));
 
         Component modeComponent = Component.empty()
-                .append(Component.translatable("foxhop.actionbar.label.mode").withStyle(net.minecraft.ChatFormatting.GRAY))
-                .append(Component.literal(": ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
-                .append(HopMode.getCurrentMode().getDisplayName().copy().withStyle(net.minecraft.ChatFormatting.AQUA, net.minecraft.ChatFormatting.BOLD));
+                .append(Component.translatable("foxhop.actionbar.label.mode")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.GRAY).withFont(UNICODE_FONT)))
+                .append(Component.literal(": ")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.DARK_GRAY).withFont(UNICODE_FONT)))
+                .append(HopMode.getCurrentMode().getDisplayName().copy()
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.AQUA).withFont(UNICODE_FONT)));
 
         Component message = Component.empty()
-                .append(Component.literal("⚡ 4xHop ").withStyle(net.minecraft.ChatFormatting.YELLOW, net.minecraft.ChatFormatting.BOLD))
-                .append(Component.literal("│ ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
+                .append(Component.literal("4xHop")
+                        .withStyle(style -> style.withColor(net.minecraft.ChatFormatting.YELLOW).withFont(UNICODE_FONT)))
+                .append(separator)
                 .append(speedComponent)
                 .append(separator)
                 .append(autoBhopComponent)
