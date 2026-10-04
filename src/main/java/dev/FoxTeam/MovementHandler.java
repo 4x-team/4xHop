@@ -80,8 +80,9 @@ public class MovementHandler {
                     player.jumpFromGround();
                     Vec3 motion = player.getDeltaMovement();
                     double mult = HopMode.getSpeedMultiplier();
-                    if (mult > 0.0 && hasMoveInput) {
-                        double targetSpeed = Math.max(Math.hypot(motion.x, motion.z), prevAirSpeed) * mult;
+                    if (hasMoveInput) {
+                        double baseJumpSpeed = Math.hypot(motion.x, motion.z);
+                        double targetSpeed = Math.max(baseJumpSpeed * mult, prevAirSpeed);
                         applyHorizontalSpeed(player, motion, targetSpeed);
                     }
                 }
@@ -106,8 +107,8 @@ public class MovementHandler {
                     if (groundTicks >= 1 && groundTicks <= 2) {
                         manualBonus += 0.1;
                         Vec3 motion = player.getDeltaMovement();
-                        double effectiveMult = HopMode.getSpeedMultiplier() + manualBonus;
-                        double targetSpeed = Math.max(Math.hypot(motion.x, motion.z), prevAirSpeed) * (effectiveMult / Math.max(1.0, HopMode.getSpeedMultiplier()));
+                        double baseJumpSpeed = Math.hypot(motion.x, motion.z);
+                        double targetSpeed = Math.max(baseJumpSpeed * (HopMode.getSpeedMultiplier() + manualBonus), prevAirSpeed * 1.02);
                         applyHorizontalSpeed(player, motion, targetSpeed);
                     } else {
                         manualBonus = 0.0;
