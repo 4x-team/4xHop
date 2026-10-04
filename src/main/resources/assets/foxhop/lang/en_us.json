@@ -1,0 +1,17 @@
+{
+  "key.categories.foxhop": "4xHop",
+  "key.foxhop.speed_up": "Increase Speed (+10%)",
+  "key.foxhop.speed_down": "Decrease Speed (-10%)",
+  "key.foxhop.toggle_autobhop": "Toggle Auto-Bhop",
+  "foxhop.mode.default": "Default",
+  "foxhop.mode.strafe": "Strafe",
+  "foxhop.status.on": "ON",
+  "foxhop.status.off": "OFF",
+  "foxhop.actionbar.status": "Speed: %s | Auto-Bhop: %s | Mode: %s",
+  "foxhop.screen.title": "4xHop Configuration",
+  "foxhop.screen.mode_default": "Default Bhop",
+  "foxhop.screen.mode_strafe": "Strafe Bhop",
+  "foxhop.screen.close": "Done",
+  "foxhop.command.mode_changed": "4xHop mode changed to: %s",
+  "foxhop.command.opened_gui": "Opening 4xHop configuration screen"
+}
