@@ -185,12 +185,35 @@ public class MovementHandler {
         if (mc.player == null) {
             return;
         }
-        Component message = Component.translatable(
-                "foxhop.actionbar.status",
-                String.format(java.util.Locale.ROOT, "%.1fx", HopMode.getSpeedMultiplier()),
-                Component.translatable(HopMode.isAutoBhop() ? "foxhop.status.on" : "foxhop.status.off"),
-                HopMode.getCurrentMode().getDisplayName()
-        );
+
+        Component separator = Component.literal("  »  ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY);
+
+        Component speedComponent = Component.empty()
+                .append(Component.translatable("foxhop.actionbar.label.speed").withStyle(net.minecraft.ChatFormatting.GRAY))
+                .append(Component.literal(": ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
+                .append(Component.literal(String.format(java.util.Locale.ROOT, "%.1fx", HopMode.getSpeedMultiplier())).withStyle(net.minecraft.ChatFormatting.GOLD, net.minecraft.ChatFormatting.BOLD));
+
+        boolean autoBhopOn = HopMode.isAutoBhop();
+        Component autoBhopComponent = Component.empty()
+                .append(Component.translatable("foxhop.actionbar.label.autobhop").withStyle(net.minecraft.ChatFormatting.GRAY))
+                .append(Component.literal(": ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
+                .append(Component.translatable(autoBhopOn ? "foxhop.status.on" : "foxhop.status.off")
+                        .withStyle(autoBhopOn ? net.minecraft.ChatFormatting.GREEN : net.minecraft.ChatFormatting.RED, net.minecraft.ChatFormatting.BOLD));
+
+        Component modeComponent = Component.empty()
+                .append(Component.translatable("foxhop.actionbar.label.mode").withStyle(net.minecraft.ChatFormatting.GRAY))
+                .append(Component.literal(": ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
+                .append(HopMode.getCurrentMode().getDisplayName().copy().withStyle(net.minecraft.ChatFormatting.AQUA, net.minecraft.ChatFormatting.BOLD));
+
+        Component message = Component.empty()
+                .append(Component.literal("⚡ 4xHop ").withStyle(net.minecraft.ChatFormatting.YELLOW, net.minecraft.ChatFormatting.BOLD))
+                .append(Component.literal("│ ").withStyle(net.minecraft.ChatFormatting.DARK_GRAY))
+                .append(speedComponent)
+                .append(separator)
+                .append(autoBhopComponent)
+                .append(separator)
+                .append(modeComponent);
+
         mc.player.displayClientMessage(message, true);
     }
 }
