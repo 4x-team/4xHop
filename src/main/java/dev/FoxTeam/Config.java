@@ -16,7 +16,7 @@ public class Config {
         BUILDER.push("general");
 
         FIRST_JOIN = BUILDER.define("firstJoin", true);
-        SPEED_MULTIPLIER = BUILDER.defineInRange("speedMultiplier", 1.0, 0.0, 10.0);
+        SPEED_MULTIPLIER = BUILDER.defineInRange("speedMultiplier", 1.0, 0.0, 100.0);
         AUTO_BHOP = BUILDER.define("autoBhop", false);
         BHOP_MODE = BUILDER.define("bhopMode", "DEFAULT");
 

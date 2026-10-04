@@ -8,7 +8,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 
 public class MovementHandler {
-    private static final double MAX_HORIZONTAL_SPEED = 2.0;
+    private static final double MAX_HORIZONTAL_SPEED = 20.0;
 
     private static double manualBonus = 0.0;
     private static int groundTicks = 0;
@@ -74,6 +74,9 @@ public class MovementHandler {
                 groundTicks++;
                 if (mc.options.keyJump.isDown()) {
                     boolean hasMoveInput = mc.options.keyUp.isDown() || mc.options.keyDown.isDown() || mc.options.keyLeft.isDown() || mc.options.keyRight.isDown();
+                    if (hasMoveInput && !player.isSprinting()) {
+                        player.setSprinting(true);
+                    }
                     player.jumpFromGround();
                     Vec3 motion = player.getDeltaMovement();
                     double mult = HopMode.getSpeedMultiplier();
@@ -83,6 +86,12 @@ public class MovementHandler {
                     }
                 }
             } else {
+                if (mc.options.keyJump.isDown()) {
+                    boolean hasMoveInput = mc.options.keyUp.isDown() || mc.options.keyDown.isDown() || mc.options.keyLeft.isDown() || mc.options.keyRight.isDown();
+                    if (hasMoveInput && !player.isSprinting()) {
+                        player.setSprinting(true);
+                    }
+                }
                 groundTicks = 0;
                 prevAirSpeed = Math.hypot(player.getDeltaMovement().x, player.getDeltaMovement().z);
             }
