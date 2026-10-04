@@ -1,0 +1,17 @@
+{
+  "key.categories.foxhop": "4xHop",
+  "key.foxhop.speed_up": "Увеличить скорость (+10%)",
+  "key.foxhop.speed_down": "Уменьшить скорость (-10%)",
+  "key.foxhop.toggle_autobhop": "Переключить Auto-Bhop",
+  "foxhop.mode.default": "Обычный",
+  "foxhop.mode.strafe": "Стрейф",
+  "foxhop.status.on": "ВКЛ",
+  "foxhop.status.off": "ВЫКЛ",
+  "foxhop.actionbar.status": "Скорость: %s | Auto-Bhop: %s | Режим: %s",
+  "foxhop.screen.title": "Настройки 4xHop",
+  "foxhop.screen.mode_default": "Обычный Bhop",
+  "foxhop.screen.mode_strafe": "Стрейф Bhop",
+  "foxhop.screen.close": "Готово",
+  "foxhop.command.mode_changed": "Режим 4xHop изменен на: %s",
+  "foxhop.command.opened_gui": "Открытие меню настроек 4xHop"
+}
